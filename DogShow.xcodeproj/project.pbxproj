@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D445566252BA96000C08456 /* String+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D445565252BA96000C08456 /* String+EXT.swift */; };
 		3D927649252907A7000D8998 /* DogBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D927648252907A7000D8998 /* DogBreeds.swift */; };
 		3DBC839B2527A19D006E3E25 /* DogShowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBC839A2527A19D006E3E25 /* DogShowApp.swift */; };
 		3DBC839D2527A19D006E3E25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBC839C2527A19D006E3E25 /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D445565252BA96000C08456 /* String+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EXT.swift"; sourceTree = "<group>"; };
 		3D927648252907A7000D8998 /* DogBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreeds.swift; sourceTree = "<group>"; };
 		3DBC83972527A19D006E3E25 /* DogShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBC839A2527A19D006E3E25 /* DogShowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogShowApp.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				3DBC83AB2527A2CB006E3E25 /* NetworkManager.swift */,
+				3D445565252BA96000C08456 /* String+EXT.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				3DBC83AF2527A3B4006E3E25 /* DogAPIResponse.swift in Sources */,
 				3DBC839B2527A19D006E3E25 /* DogShowApp.swift in Sources */,
 				3D927649252907A7000D8998 /* DogBreeds.swift in Sources */,
+				3D445566252BA96000C08456 /* String+EXT.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

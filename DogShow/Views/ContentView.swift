@@ -16,6 +16,16 @@ struct ContentView: View {
             Button("Another one please") {
                 viewModel.fetchImage()
             }.padding()
+            Button("Get breeds") {
+                NetworkManager.shared.fetchDogBreeds { result in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                    case .success(let data):
+                        print(data)
+                    }
+                }
+            }.padding()
             Spacer()
             if let image = viewModel.image {
                 image.resizable().scaledToFit()
@@ -23,7 +33,7 @@ struct ContentView: View {
             Spacer()
         }
         .onAppear {
-            
+            // Not sure what's on my mind here
         }
     }
 }

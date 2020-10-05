@@ -25,13 +25,13 @@ class NetworkManager {
     
     private init() {}
     
-        
+    
     // TODO: Add the ability to pass in dog breed
     func getImageURL(completed: @escaping (Result<DogAPIResponse, NetworkError>) -> Void) {
-//        let fullURLString = baseURL + "breeds/image/random"
-//        let fullURLString = baseURL + "breed/chihuahua/images/random"
+        //        let fullURLString = baseURL + "breeds/image/random"
+        //        let fullURLString = baseURL + "breed/chihuahua/images/random"
         
-        let fullURLString = baseURL + "breed/\(DogBreeds.allCases.randomElement()!)/images/random"
+        let fullURLString = baseURL + "breed/labrador/images/random"
         
         guard let url = URL(string: fullURLString) else {
             completed(.failure(.invalidURL))
@@ -84,18 +84,58 @@ class NetworkManager {
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             
             guard let self = self,
-                error == nil,
-            let response = response as? HTTPURLResponse, response.statusCode == 200,
-            let data = data,
-            let image = UIImage(data: data) else {
+                  error == nil,
+                  let response = response as? HTTPURLResponse, response.statusCode == 200,
+                  let data = data,
+                  let image = UIImage(data: data) else {
                 completed(nil)
                 return
             }
             
             self.cache.setObject(image, forKey: cacheKey)
-                        
+            
             completed(Image(uiImage: image))
         }
+        task.resume()
+    }
+    
+    func fetchDogBreeds(completed: @escaping (Result<BreedListResponse, NetworkError>) -> Void) {
+        
+        let fullURLString = baseURL + "breeds/list"
+        
+        print(fullURLString)
+        
+        guard let url = URL(string: fullURLString) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let breedList = try decoder.decode(BreedListResponse.self, from: data)
+                completed(.success(breedList))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+            
+        }
+        
         task.resume()
     }
     
