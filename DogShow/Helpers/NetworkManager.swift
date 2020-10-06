@@ -26,12 +26,9 @@ class NetworkManager {
     private init() {}
     
     
-    // TODO: Add the ability to pass in dog breed
-    func getImageURL(completed: @escaping (Result<DogAPIResponse, NetworkError>) -> Void) {
-        //        let fullURLString = baseURL + "breeds/image/random"
-        //        let fullURLString = baseURL + "breed/chihuahua/images/random"
+    func getImageURL(for breed: Breed, completed: @escaping (Result<DogAPIResponse, NetworkError>) -> Void) {
         
-        let fullURLString = baseURL + "breed/labrador/images/random"
+        let fullURLString = baseURL + "breed/\(breed.urlString)/images/random"
         
         guard let url = URL(string: fullURLString) else {
             completed(.failure(.invalidURL))
@@ -99,44 +96,5 @@ class NetworkManager {
         task.resume()
     }
     
-    func fetchDogBreeds(completed: @escaping (Result<BreedListResponse, NetworkError>) -> Void) {
-        
-        let fullURLString = baseURL + "breeds/list"
-        
-        print(fullURLString)
-        
-        guard let url = URL(string: fullURLString) else {
-            completed(.failure(.invalidURL))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let breedList = try decoder.decode(BreedListResponse.self, from: data)
-                completed(.success(breedList))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-            
-        }
-        
-        task.resume()
-    }
     
 }

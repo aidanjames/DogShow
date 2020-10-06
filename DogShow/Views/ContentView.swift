@@ -14,26 +14,20 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Button("Another one please") {
-                viewModel.fetchImage()
+                viewModel.newTest()
             }.padding()
-            Button("Get breeds") {
-                NetworkManager.shared.fetchDogBreeds { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let data):
-                        print(data)
-                    }
-                }
-            }.padding()
+
             Spacer()
             if let image = viewModel.image {
                 image.resizable().scaledToFit()
+            } else {
+                ProgressView()
             }
             Spacer()
-        }
-        .onAppear {
-            // Not sure what's on my mind here
+            ForEach(viewModel.breeds) { breed in
+                Text(breed.displayName)
+                    .foregroundColor(breed.displayName == viewModel.displayedBreed?.displayName ? .red : .blue)
+            }
         }
     }
 }

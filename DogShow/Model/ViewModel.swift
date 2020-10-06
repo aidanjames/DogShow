@@ -11,23 +11,40 @@ class ViewModel: ObservableObject {
     
     @Published var image: Image?
     @Published var error: Error?
+    @Published var breeds: [Breed] = []
+    @Published var displayedBreed: Breed? {
+        didSet {
+            // fetch an image URL
+            fetchImage(for: displayedBreed!)
+        }
+    }
     
+    var numberOfBreeds = 4
+
     var imageURL: String? {
         didSet {
             NetworkManager.shared.downloadImage(from: imageURL!) { image in
                 if let image = image {
                     DispatchQueue.main.async {
-                        self.image = image
+                        withAnimation {
+                            self.image = image
+                        }
                     }
                 }
             }
         }
     }
     
-    init() { fetchImage() }
+    init() { newTest() }
     
-    func fetchImage() {
-        NetworkManager.shared.getImageURL { result in
+    func newTest() {
+        image = nil
+        breeds = Breeds.fetchRandomBreeds(number: numberOfBreeds)
+        displayedBreed = breeds.randomElement()
+    }
+    
+    func fetchImage(for breed: Breed) {
+        NetworkManager.shared.getImageURL(for: breed) { result in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
