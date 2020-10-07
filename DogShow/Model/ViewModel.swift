@@ -19,7 +19,9 @@ class ViewModel: ObservableObject {
         }
     }
     
-    var numberOfBreeds = 4
+    @Published var numberOfBreeds = 4 {
+        didSet { newTest() }
+    }
 
     var imageURL: String? {
         didSet {

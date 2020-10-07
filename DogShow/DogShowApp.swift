@@ -20,7 +20,7 @@ struct DogShowApp: App {
 /*
  FUNCTIONALITY:
  
- - Fetch one random dog photo and display it in the main view (immediately on opening the app)
+
  - Allow the user to select a particular breed
  - Allow the user to save photos as favourites
  - Widget

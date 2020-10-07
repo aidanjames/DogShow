@@ -13,6 +13,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                
+                ForEach(2...5, id: \.self) { i in
+                    Button("\(i)") {
+                        viewModel.numberOfBreeds = i
+                    }
+                    .padding(.horizontal)
+                    .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
+                }                
+            }
             Button("Another one please") {
                 viewModel.newTest()
             }.padding()
