@@ -14,7 +14,6 @@ class ViewModel: ObservableObject {
     @Published var breeds: [Breed] = []
     @Published var displayedBreed: Breed? {
         didSet {
-            // fetch an image URL
             fetchImage(for: displayedBreed!)
         }
     }

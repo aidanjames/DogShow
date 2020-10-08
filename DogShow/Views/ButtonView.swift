@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct ButtonView: View {
+    
+    var breeds: [Breed]
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        LazyVGrid(columns: columns, spacing: 20) {
+            ForEach(breeds) { dog in
+                Text("\(dog.displayName)")
+            }
+        }
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView()
+        ButtonView(breeds: [Breed(masterBreed: "labrador"), Breed(masterBreed: "Poodle"), Breed(masterBreed: "Golden Retriever"), Breed(masterBreed: "Golden Retriever"), Breed(masterBreed: "Golden Retriever"), Breed(masterBreed: "Golden Retriever"), Breed(masterBreed: "Golden Retriever")])
     }
 }
