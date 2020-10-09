@@ -11,6 +11,8 @@ class ViewModel: ObservableObject {
     
     @Published var image: Image?
     @Published var error: Error?
+    @Published var currentScore = 0
+    @Published var dogsShown = 0
     @Published var breeds: [Breed] = []
     @Published var displayedBreed: Breed? {
         didSet {
@@ -21,6 +23,7 @@ class ViewModel: ObservableObject {
     @Published var numberOfBreeds = 4 {
         didSet { newTest() }
     }
+    
 
     var imageURL: String? {
         didSet {

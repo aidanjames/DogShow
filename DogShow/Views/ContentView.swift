@@ -14,7 +14,6 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 ForEach(2...5, id: \.self) { i in
                     Button("\(i)") {
                         viewModel.numberOfBreeds = i
@@ -23,7 +22,10 @@ struct ContentView: View {
                     .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
                 }                
             }
-            Button("Another one please") {
+            Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown)").padding()
+            Button("Restart game") {
+                viewModel.currentScore = 0
+                viewModel.dogsShown = 0
                 viewModel.newTest()
             }.padding()
 
@@ -34,10 +36,8 @@ struct ContentView: View {
                 ProgressView()
             }
             Spacer()
-            ForEach(viewModel.breeds) { breed in
-                Text(breed.displayName)
-                    .foregroundColor(breed.displayName == viewModel.displayedBreed?.displayName ? .red : .blue)
-            }
+            ButtonView(viewModel: viewModel)
+                .padding()
         }
     }
 }
