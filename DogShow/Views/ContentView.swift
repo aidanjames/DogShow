@@ -14,21 +14,23 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                ForEach(2...5, id: \.self) { i in
-                    Button("\(i)") {
-                        viewModel.numberOfBreeds = i
+                ForEach(2...6, id: \.self) { i in
+                    if i.isMultiple(of: 2) {
+                        Button("\(i)") {
+                            viewModel.numberOfBreeds = i
+                        }
+                        .padding(.horizontal)
+                        .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
                     }
-                    .padding(.horizontal)
-                    .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
                 }                
             }
-            Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown)").padding()
+            Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown) (\(viewModel.percentCorrect)%)").padding()
             Button("Restart game") {
                 viewModel.currentScore = 0
                 viewModel.dogsShown = 0
                 viewModel.newTest()
             }.padding()
-
+            
             Spacer()
             if let image = viewModel.image {
                 image.resizable().scaledToFit()

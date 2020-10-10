@@ -24,6 +24,10 @@ class ViewModel: ObservableObject {
         didSet { newTest() }
     }
     
+    var percentCorrect: Int {
+        guard dogsShown > 0 else { return 0 }
+        return Int((Double(currentScore) / Double(dogsShown)) * 100)
+    }
 
     var imageURL: String? {
         didSet {
