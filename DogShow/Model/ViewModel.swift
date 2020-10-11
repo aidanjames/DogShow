@@ -14,6 +14,7 @@ class ViewModel: ObservableObject {
     @Published var currentScore = 0
     @Published var dogsShown = 0
     @Published var breeds: [Breed] = []
+    
     @Published var displayedBreed: Breed? {
         didSet {
             fetchImage(for: displayedBreed!)
@@ -24,6 +25,12 @@ class ViewModel: ObservableObject {
         didSet { newTest() }
     }
     
+    @Published var reportedImages: [String] = [] {
+        didSet {
+            saveReportedImages()
+        }
+    }
+    
     var percentCorrect: Int {
         guard dogsShown > 0 else { return 0 }
         return Int((Double(currentScore) / Double(dogsShown)) * 100)
@@ -31,6 +38,11 @@ class ViewModel: ObservableObject {
 
     var imageURL: String? {
         didSet {
+            guard !reportedImages.contains(imageURL ?? "") else {
+                print("We got a reported image: \(imageURL!)")
+                fetchImage(for: displayedBreed!)
+                return
+            }
             NetworkManager.shared.downloadImage(from: imageURL!) { image in
                 if let image = image {
                     DispatchQueue.main.async {
@@ -43,7 +55,12 @@ class ViewModel: ObservableObject {
         }
     }
     
-    init() { newTest() }
+    init() {
+        newTest()
+        if let badImages: [String] = FileManager.default.fetchData(from: "BadImages") {
+            reportedImages = badImages
+        }
+    }
     
     func newTest() {
         image = nil
@@ -63,6 +80,21 @@ class ViewModel: ObservableObject {
                 self.imageURL = response.message
             }
         }
+    }
+    
+    func reportCurrentImage() {
+        if let badImageUrl = imageURL {
+            reportedImages.append(badImageUrl)
+            newTest()
+        }
+    }
+    
+    func saveReportedImages() {
+        FileManager.default.writeData(reportedImages, to: "BadImages")
+    }
+    
+    func clearReportedImages() {
+        FileManager.default.deleteData(from: "BadImages")
     }
     
 }

@@ -45,8 +45,6 @@ struct ButtonView: View {
                                 viewModel.newTest()
                             }
                         }
-
-                        
                     }) {
                         Text("\(dog.displayName)")
                             .foregroundColor(.white)
@@ -55,8 +53,19 @@ struct ButtonView: View {
                             .cornerRadius(16)
                             .opacity(!showingFeedback ? 1 : dog.displayName == viewModel.displayedBreed?.displayName ? 1 : 0.5)
                     }
-                    
                 }
+            }
+
+            Button("Report image") {
+                viewModel.reportCurrentImage()
+            }.padding()
+            Button("Print bad images") {
+                for imageUrl in viewModel.reportedImages {
+                    print(imageUrl)
+                }
+            }.padding()
+            Button("Delete bad images") {
+                viewModel.reportedImages.removeAll()
             }
         }
     }
