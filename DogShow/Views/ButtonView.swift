@@ -59,14 +59,15 @@ struct ButtonView: View {
             Button("Report image") {
                 viewModel.reportCurrentImage()
             }.padding()
-            Button("Print bad images") {
-                for imageUrl in viewModel.reportedImages {
-                    print(imageUrl)
+            HStack {
+                Text("\(viewModel.reportedImages.count) reported images")
+                Button("Clear") {
+                    for imageUrl in viewModel.reportedImages {
+                        print("Deleting: \(imageUrl)")
+                    }
+                    viewModel.reportedImages.removeAll()
                 }
             }.padding()
-            Button("Delete bad images") {
-                viewModel.reportedImages.removeAll()
-            }
         }
     }
 }
@@ -78,4 +79,3 @@ struct ButtonView_Previews: PreviewProvider {
 }
 
 
-//.foregroundColor(dog.displayName == viewModel.displayedBreed?.displayName ? .red : .primary)
