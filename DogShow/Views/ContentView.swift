@@ -11,6 +11,8 @@ struct ContentView: View {
     
     @StateObject var viewModel = ViewModel()
     
+    @State private var showingReviewScreen = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -25,10 +27,12 @@ struct ContentView: View {
                 }                
             }
             Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown) (\(viewModel.percentCorrect)%)").padding()
+                
             Button("Restart game") {
                 viewModel.currentScore = 0
                 viewModel.dogsShown = 0
                 viewModel.newTest()
+
             }.padding()
             
             Spacer()
@@ -38,8 +42,11 @@ struct ContentView: View {
                 ProgressView()
             }
             Spacer()
-            ButtonView(viewModel: viewModel)
+            ButtonView(viewModel: viewModel, showingReviewScreen: $showingReviewScreen)
                 .padding()
+        }
+        .sheet(isPresented: $showingReviewScreen) {
+            ReviewQuizzView(viewModel: viewModel)
         }
     }
 }

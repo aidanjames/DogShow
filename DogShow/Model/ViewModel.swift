@@ -13,7 +13,8 @@ class ViewModel: ObservableObject {
     @Published var error: Error?
     @Published var currentScore = 0
     @Published var dogsShown = 0
-    @Published var breeds: [Breed] = []
+    @Published var breeds = [Breed]()
+    @Published var questionsAndAnswers = [QuestionAndAnswer]()
     
     @Published var displayedBreed: Breed? {
         didSet {
@@ -95,6 +96,16 @@ class ViewModel: ObservableObject {
     
     func clearReportedImages() {
         FileManager.default.deleteData(from: "BadImages")
+    }
+    
+    func saveCurrentGame() {
+        // Save current presented image
+        // Save possible breeds
+        // Save questions and answers
+    }
+    
+    func fetchCurrentGame() {
+        // Load everything
     }
     
 }

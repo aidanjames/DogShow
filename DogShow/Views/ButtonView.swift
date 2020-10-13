@@ -12,6 +12,7 @@ struct ButtonView: View {
     @ObservedObject var viewModel: ViewModel
     @State private var showingFeedback = false
     @State private var answerWasCorrect = false
+    @Binding var showingReviewScreen: Bool
     
     let columns = [
         GridItem(.flexible()),
@@ -31,6 +32,7 @@ struct ButtonView: View {
                     Button(action: {
                         withAnimation {
                             showingFeedback = true
+                            viewModel.questionsAndAnswers.append(QuestionAndAnswer(presentedImageUrl: viewModel.imageURL!, guessedBreed: dog, correctBreed: viewModel.displayedBreed!))
                             if dog.displayName == viewModel.displayedBreed?.displayName {
                                 answerWasCorrect = true
                                 viewModel.currentScore += 1
@@ -68,13 +70,16 @@ struct ButtonView: View {
                     viewModel.reportedImages.removeAll()
                 }
             }.padding()
+            Button("Show review screen") {
+                showingReviewScreen.toggle()
+            }
         }
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(viewModel: ViewModel())
+        ButtonView(viewModel: ViewModel(), showingReviewScreen: .constant(false))
     }
 }
 
