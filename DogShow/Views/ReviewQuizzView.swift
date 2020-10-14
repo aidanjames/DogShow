@@ -8,20 +8,26 @@
 import SwiftUI
 
 struct ReviewQuizzView: View {
-    
     @ObservedObject var viewModel: ViewModel
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         NavigationView {
-            VStack {
-                ForEach(viewModel.questionsAndAnswers) {
-                    Text("You guessed: \($0.guessedBreed.displayName)")
-                    Text("Correct answer: \($0.correctBreed.displayName)")
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(viewModel.questionsAndAnswers) {
+                        GuessView(questionAndAnswer: $0)
+                    }
+                    .navigationTitle(Text("Answers!"))
                 }
-                .navigationTitle(Text("Answers!"))
             }
         }
     }
+
 }
 
 struct ReviewQuizzView_Previews: PreviewProvider {
