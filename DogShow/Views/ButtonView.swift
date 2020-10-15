@@ -70,8 +70,10 @@ struct ButtonView: View {
                     viewModel.reportedImages.removeAll()
                 }
             }.padding()
-            Button("Show review screen") {
-                showingReviewScreen.toggle()
+            if !viewModel.questionsAndAnswers.isEmpty {
+                Button("Show review screen") {
+                    showingReviewScreen.toggle()
+                }
             }
         }
     }

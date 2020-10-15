@@ -17,18 +17,19 @@ struct GuessView: View {
             answerWasCorrect ? Color.green.opacity(0.2) : Color.red.opacity(0.2)
             VStack(alignment: .leading) {
                 ImageView(imageUrl: questionAndAnswer.presentedImageUrl)
+                Spacer()
                 Text("\(questionAndAnswer.guessedBreed.displayName)")
                     .foregroundColor(answerWasCorrect ? .green : .red)
                 Text("\(answerWasCorrect ? "" : questionAndAnswer.correctBreed.displayName)")
             }
             .font(.caption)
         }
-        .frame(width: 200, height: 200)
+        .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
     }
 }
 
 struct GuessView_Previews: PreviewProvider {
     static var previews: some View {
-        GuessView(questionAndAnswer: QuestionAndAnswer(presentedImageUrl: "https://images.dog.ceo/breeds/spaniel-sussex/n02102480_4923.jpg", guessedBreed: Breed(masterBreed: "Labrador"), correctBreed: Breed(masterBreed: "Poodle")))
+        GuessView(questionAndAnswer: QuestionAndAnswer(presentedImageUrl: "https://images.dog.ceo/breeds/spaniel-sussex/n02102480_4923.jpg", guessedBreed: Breed(masterBreed: "Leonberg"), correctBreed: Breed(masterBreed: "Curly Retriever")))
     }
 }

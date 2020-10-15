@@ -108,4 +108,11 @@ class ViewModel: ObservableObject {
         // Load everything
     }
     
+    
+    func restartGame() {
+        questionsAndAnswers = []
+        currentScore = 0
+        dogsShown = 0
+        newTest()
+    }
 }

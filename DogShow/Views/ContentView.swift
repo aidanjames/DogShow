@@ -29,10 +29,7 @@ struct ContentView: View {
             Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown) (\(viewModel.percentCorrect)%)").padding()
                 
             Button("Restart game") {
-                viewModel.currentScore = 0
-                viewModel.dogsShown = 0
-                viewModel.newTest()
-
+                viewModel.restartGame()
             }.padding()
             
             Spacer()
