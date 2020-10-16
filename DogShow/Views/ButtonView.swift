@@ -49,32 +49,34 @@ struct ButtonView: View {
                         }
                     }) {
                         Text("\(dog.displayName)")
+                            
                             .foregroundColor(.white)
-                            .frame(width: 150, height: 50)
+//                            .frame(width: 150, height: 50)
+                            .frame(minWidth: 150, maxWidth: 200, minHeight: 50, maxHeight: 60)
                             .background(Color.blue)
                             .cornerRadius(16)
                             .opacity(!showingFeedback ? 1 : dog.displayName == viewModel.displayedBreed?.displayName ? 1 : 0.5)
                     }
                 }
             }
-
-            Button("Report image") {
-                viewModel.reportCurrentImage()
-            }.padding()
-            HStack {
-                Text("\(viewModel.reportedImages.count) reported images")
-                Button("Clear") {
-                    for imageUrl in viewModel.reportedImages {
-                        print("Deleting: \(imageUrl)")
-                    }
-                    viewModel.reportedImages.removeAll()
-                }
-            }.padding()
-            if !viewModel.questionsAndAnswers.isEmpty {
-                Button("Show review screen") {
-                    showingReviewScreen.toggle()
-                }
+            
+            //            Button("Report image") {
+            //                viewModel.reportCurrentImage()
+            //            }.padding()
+            //            HStack {
+            //                Text("\(viewModel.reportedImages.count) reported images")
+            //                Button("Clear") {
+            //                    for imageUrl in viewModel.reportedImages {
+            //                        print("Deleting: \(imageUrl)")
+            //                    }
+            //                    viewModel.reportedImages.removeAll()
+            //                }
+            //            }.padding()
+            Button("Show review screen") {
+                showingReviewScreen.toggle()
             }
+            .disabled(viewModel.questionsAndAnswers.isEmpty)
+            .padding()
         }
     }
 }

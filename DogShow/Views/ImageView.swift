@@ -15,7 +15,7 @@ struct ImageView: View {
         if image != nil {
             image!
                 .resizable()
-                .scaledToFit()
+//                .scaledToFit()
                 .frame(maxWidth: .infinity)
         } else {
             ProgressView()
