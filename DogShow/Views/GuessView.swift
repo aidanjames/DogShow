@@ -15,14 +15,21 @@ struct GuessView: View {
     var body: some View {
         ZStack {
             answerWasCorrect ? Color.green.opacity(0.2) : Color.red.opacity(0.2)
-            VStack(alignment: .leading) {
-                ImageView(imageUrl: questionAndAnswer.presentedImageUrl)
-                Spacer()
-                Text("\(questionAndAnswer.guessedBreed.displayName)")
-                    .foregroundColor(answerWasCorrect ? .green : .red)
-                Text("\(answerWasCorrect ? "" : questionAndAnswer.correctBreed.displayName)")
-            }
-            .font(.caption)
+                VStack(alignment: .leading) {
+                    ImageView(imageUrl: questionAndAnswer.presentedImageUrl)
+                    Spacer()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("\(questionAndAnswer.guessedBreed.displayName)")
+                                .foregroundColor(answerWasCorrect ? .green : .red)
+                            Text("\(answerWasCorrect ? "" : questionAndAnswer.correctBreed.displayName)")
+
+                        }
+                        Spacer()
+                        Image(systemName: "ellipsis.circle").padding()
+                    }
+                }
+                .font(.caption)
         }
         .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
     }
