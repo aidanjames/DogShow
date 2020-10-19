@@ -12,11 +12,13 @@ struct GuessView: View {
     
     var answerWasCorrect: Bool { questionAndAnswer.correctBreed.displayName == questionAndAnswer.guessedBreed.displayName }
     
+    @State private var showingMoreExamples = false
+    
     var body: some View {
         ZStack {
             answerWasCorrect ? Color.green.opacity(0.2) : Color.red.opacity(0.2)
                 VStack(alignment: .leading) {
-                    ImageView(imageUrl: questionAndAnswer.presentedImageUrl)
+                    ImageView(imageUrl: questionAndAnswer.presentedImageUrl).scaledToFit()
                     Spacer()
                     HStack {
                         VStack(alignment: .leading) {
@@ -26,7 +28,18 @@ struct GuessView: View {
 
                         }
                         Spacer()
-                        Image(systemName: "ellipsis.circle").padding()
+                        Button(action: { showingMoreExamples.toggle() }) {
+                            Text("More...")
+                                .foregroundColor(.white)
+                                .font(.caption)
+                                .padding(5)
+                                .background(Color.blue)
+                                .cornerRadius(16)
+                        }
+                        .padding(5)
+                        .sheet(isPresented: $showingMoreExamples) {
+                            MoreExamplesView(breed: questionAndAnswer.correctBreed)
+                        }
                     }
                 }
                 .font(.caption)

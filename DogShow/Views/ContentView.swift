@@ -10,9 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var viewModel = ViewModel()
-    
-    @State private var showingReviewScreen = false
-    
+        
     var body: some View {
         NavigationView {
             VStack {
@@ -35,16 +33,22 @@ struct ContentView: View {
                 
                 Spacer()
                 if let image = viewModel.image {
-                    image.resizable().scaledToFit()
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(16)
+                        
                 } else {
                     ProgressView()
                 }
                 Spacer()
-                ButtonView(viewModel: viewModel, showingReviewScreen: $showingReviewScreen)
+                ButtonView(viewModel: viewModel)
                     .padding()
-            }
-            .sheet(isPresented: $showingReviewScreen) {
-                ReviewQuizzView(viewModel: viewModel)
+                NavigationLink(destination: ReviewQuizzView(viewModel: viewModel)) {
+                    Text("Review responses")
+                        .padding()
+                }
+                .disabled(viewModel.questionsAndAnswers.isEmpty)
             }
             .navigationTitle(Text("Dog show"))
             .toolbar {

@@ -27,28 +27,28 @@ struct ReviewQuizzView: View {
     ]
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Picker(selection: $filterCriteria.animation(), label: Text("Filter by")) {
-                                Text("All").tag(0)
-                                Text("Correct").tag(1)
-                                Text("Incorrect").tag(2)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 0) {
-                        ForEach(filteredQuestionAndAnswers) {
-                            GuessView(questionAndAnswer: $0)
-                        }
-                        .navigationTitle(Text("Answers!"))
+        VStack {
+            Picker(selection: $filterCriteria.animation(), label: Text("Filter by")) {
+                Text("All").tag(0)
+                Text("Correct").tag(1)
+                Text("Incorrect").tag(2)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(filteredQuestionAndAnswers) {
+                        GuessView(questionAndAnswer: $0)
+                            .cornerRadius(16)
+                            .padding()
                     }
+                    
                 }
-
             }
         }
+        .navigationTitle(Text("Answers"))
     }
-
+    
 }
 
 struct ReviewQuizzView_Previews: PreviewProvider {

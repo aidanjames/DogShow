@@ -12,7 +12,6 @@ struct ButtonView: View {
     @ObservedObject var viewModel: ViewModel
     @State private var showingFeedback = false
     @State private var answerWasCorrect = false
-    @Binding var showingReviewScreen: Bool
     
     let columns = [
         GridItem(.flexible()),
@@ -72,18 +71,14 @@ struct ButtonView: View {
             //                    viewModel.reportedImages.removeAll()
             //                }
             //            }.padding()
-            Button("Show review screen") {
-                showingReviewScreen.toggle()
-            }
-            .disabled(viewModel.questionsAndAnswers.isEmpty)
-            .padding()
+
         }
     }
 }
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(viewModel: ViewModel(), showingReviewScreen: .constant(false))
+        ButtonView(viewModel: ViewModel())
     }
 }
 

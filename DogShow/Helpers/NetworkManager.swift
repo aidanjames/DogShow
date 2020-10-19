@@ -65,6 +65,46 @@ class NetworkManager {
     }
     
     
+    func getImagesURL(for breed: Breed, completed: @escaping (Result<DogAPIResponseArray, NetworkError>) -> Void) {
+        
+        let fullURLString = baseURL + "breed/\(breed.urlString)/images"
+        
+        guard let url = URL(string: fullURLString) else {
+            completed(.failure(.invalidURL))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let _ = error {
+                completed(.failure(.unableToComplete))
+            }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidResponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                let imageURL = try decoder.decode(DogAPIResponseArray.self, from: data)
+                completed(.success(imageURL))
+            } catch {
+                completed(.failure(.invalidData))
+            }
+            
+        }
+        
+        task.resume()
+    }
+    
+    
+    
     func downloadImage(from urlString: String, completed: @escaping (Image?) -> Void) {
         
         let cacheKey = NSString(string: urlString)

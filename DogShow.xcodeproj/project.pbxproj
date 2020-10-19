@@ -15,6 +15,7 @@
 		3DA48A22252E2C9F00A4D930 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA48A21252E2C9F00A4D930 /* ButtonView.swift */; };
 		3DA796C925362F8B00815E7E /* QuestionAndAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA796C825362F8B00815E7E /* QuestionAndAnswer.swift */; };
 		3DA796CD2536317100815E7E /* ReviewQuizzView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA796CC2536317100815E7E /* ReviewQuizzView.swift */; };
+		3DB54028253E0B520005210D /* MoreExamplesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB54027253E0B520005210D /* MoreExamplesView.swift */; };
 		3DBC839B2527A19D006E3E25 /* DogShowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBC839A2527A19D006E3E25 /* DogShowApp.swift */; };
 		3DBC839D2527A19D006E3E25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBC839C2527A19D006E3E25 /* ContentView.swift */; };
 		3DBC839F2527A19F006E3E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBC839E2527A19F006E3E25 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		3DA48A21252E2C9F00A4D930 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		3DA796C825362F8B00815E7E /* QuestionAndAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAndAnswer.swift; sourceTree = "<group>"; };
 		3DA796CC2536317100815E7E /* ReviewQuizzView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQuizzView.swift; sourceTree = "<group>"; };
+		3DB54027253E0B520005210D /* MoreExamplesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreExamplesView.swift; sourceTree = "<group>"; };
 		3DBC83972527A19D006E3E25 /* DogShow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogShow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBC839A2527A19D006E3E25 /* DogShowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogShowApp.swift; sourceTree = "<group>"; };
 		3DBC839C2527A19D006E3E25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				3DA796CC2536317100815E7E /* ReviewQuizzView.swift */,
 				3D3CD5342537785800076307 /* ImageView.swift */,
 				3D3CD53725377B8D00076307 /* GuessView.swift */,
+				3DB54027253E0B520005210D /* MoreExamplesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB54028253E0B520005210D /* MoreExamplesView.swift in Sources */,
 				3D3CD5352537785800076307 /* ImageView.swift in Sources */,
 				3DBC83B32527AE83006E3E25 /* ViewModel.swift in Sources */,
 				3DA796CD2536317100815E7E /* ReviewQuizzView.swift in Sources */,

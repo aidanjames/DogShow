@@ -10,3 +10,7 @@ import Foundation
 struct DogAPIResponse: Codable {
     var message: String
 }
+
+struct DogAPIResponseArray: Codable {
+    var message: [String]
+}
