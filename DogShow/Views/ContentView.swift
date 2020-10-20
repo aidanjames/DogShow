@@ -10,26 +10,23 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var viewModel = ViewModel()
+    @State private var showingSettingsView = false
         
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    ForEach(2...6, id: \.self) { i in
-                        if i.isMultiple(of: 2) {
-                            Button("\(i)") {
-                                viewModel.numberOfBreeds = i
-                            }
-                            .padding(.horizontal)
-                            .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
-                        }
-                    }
-                }
+//                HStack {
+//                    ForEach(2...6, id: \.self) { i in
+//                        if i.isMultiple(of: 2) {
+//                            Button("\(i)") {
+//                                viewModel.numberOfBreeds = i
+//                            }
+//                            .padding(.horizontal)
+//                            .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
+//                        }
+//                    }
+//                }
                 Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown) (\(viewModel.percentCorrect)%)").padding()
-                
-                Button("Restart game") {
-                    viewModel.restartGame()
-                }.padding()
                 
                 Spacer()
                 if let image = viewModel.image {
@@ -53,8 +50,16 @@ struct ContentView: View {
             .navigationTitle(Text("Dog show"))
             .toolbar {
                 ToolbarItem {
-                    Button(action: {} ) {
+                    Button(action: { showingSettingsView.toggle() } ) {
                         Image(systemName: "gearshape")
+                    }
+                    .sheet(isPresented: $showingSettingsView) {
+                        SettingsView(viewModel: viewModel)
+                    }
+                }
+                ToolbarItem(placement: .cancellationAction) {
+                    Button(action: { viewModel.restartGame() } ) {
+                        Image(systemName: "gobackward")
                     }
                 }
             }
