@@ -11,21 +11,11 @@ struct ContentView: View {
     
     @StateObject var viewModel = ViewModel()
     @State private var showingSettingsView = false
-        
+    
+    
     var body: some View {
         NavigationView {
             VStack {
-//                HStack {
-//                    ForEach(2...6, id: \.self) { i in
-//                        if i.isMultiple(of: 2) {
-//                            Button("\(i)") {
-//                                viewModel.numberOfBreeds = i
-//                            }
-//                            .padding(.horizontal)
-//                            .foregroundColor(viewModel.numberOfBreeds == i ? .red : .blue)
-//                        }
-//                    }
-//                }
                 Text("Score: \(viewModel.currentScore) / \(viewModel.dogsShown) (\(viewModel.percentCorrect)%)").padding()
                 
                 Spacer()
@@ -34,7 +24,7 @@ struct ContentView: View {
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(16)
-                        
+                        .pinchToZoom()
                 } else {
                     ProgressView()
                 }

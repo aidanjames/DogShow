@@ -11,6 +11,7 @@ struct MoreExamplesView: View {
     
     var breed: Breed
     @State private var imagesUrls = [String]()
+    @Environment(\.presentationMode) var presentationMode
     
     let columns = [
         GridItem(.flexible(), spacing: 0),
@@ -18,23 +19,34 @@ struct MoreExamplesView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 0) {
-                ForEach(imagesUrls, id: \.self) {
-                    ImageView(imageUrl: $0)
-                        .scaledToFit()
-                        .cornerRadius(16)
-                        .padding()
+        NavigationView {
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 0) {
+                    ForEach(imagesUrls, id: \.self) {
+                        ImageView(imageUrl: $0)
+                            .scaledToFit()
+                            .cornerRadius(16)
+                            .padding()
+                            .pinchToZoom()
+                    }
                 }
             }
-        }
-        .onAppear {
-            NetworkManager.shared.getImagesURL(for: breed) { result in
-                switch result {
-                case .failure(let error):
-                    print(error.rawValue)
-                case .success(let response):
-                    self.imagesUrls = response.message
+            .onAppear {
+                NetworkManager.shared.getImagesURL(for: breed) { result in
+                    switch result {
+                    case .failure(let error):
+                        print(error.rawValue)
+                    case .success(let response):
+                        self.imagesUrls = response.message
+                    }
+                }
+            }
+            .navigationTitle(Text("\(breed.displayName)"))
+            .toolbar {
+                ToolbarItem {
+                    Button(action: { presentationMode.wrappedValue.dismiss() } ) {
+                        Text("Done")
+                    }
                 }
             }
         }
