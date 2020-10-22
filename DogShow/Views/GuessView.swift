@@ -17,7 +17,7 @@ struct GuessView: View {
     var body: some View {
         ZStack {
             answerWasCorrect ? Color.green.opacity(0.2) : Color.red.opacity(0.2)
-                VStack(alignment: .leading) {
+                VStack() {
                     ImageView(imageUrl: questionAndAnswer.presentedImageUrl).scaledToFit()
                     Spacer()
                     HStack {
@@ -27,6 +27,8 @@ struct GuessView: View {
                             Text("\(answerWasCorrect ? "" : questionAndAnswer.correctBreed.displayName)")
 
                         }
+                        .padding(.bottom, 5)
+                        .padding(.leading, 5)
                         Spacer()
                         Button(action: { showingMoreExamples.toggle() }) {
                             Text("More...")
