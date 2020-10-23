@@ -18,7 +18,10 @@ struct GuessView: View {
         ZStack {
             answerWasCorrect ? Color.green.opacity(0.2) : Color.red.opacity(0.2)
                 VStack() {
-                    ImageView(imageUrl: questionAndAnswer.presentedImageUrl).scaledToFit()
+                    Spacer()
+                    ImageView(imageUrl: questionAndAnswer.presentedImageUrl)
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(16)
                     Spacer()
                     HStack {
                         VStack(alignment: .leading) {
