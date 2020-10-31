@@ -10,6 +10,7 @@
 		3D039586253391DB007B1A25 /* FileManager+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D039585253391DB007B1A25 /* FileManager+EXT.swift */; };
 		3D3CD5352537785800076307 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CD5342537785800076307 /* ImageView.swift */; };
 		3D3CD53825377B8D00076307 /* GuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3CD53725377B8D00076307 /* GuessView.swift */; };
+		3D429494254D92E4008EDE5A /* Haptics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D429493254D92E4008EDE5A /* Haptics.swift */; };
 		3D445566252BA96000C08456 /* String+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D445565252BA96000C08456 /* String+EXT.swift */; };
 		3D65CF15253F5FF70004F4FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D65CF14253F5FF70004F4FB /* SettingsView.swift */; };
 		3D927649252907A7000D8998 /* DogBreeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D927648252907A7000D8998 /* DogBreeds.swift */; };
@@ -31,6 +32,7 @@
 		3D039585253391DB007B1A25 /* FileManager+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+EXT.swift"; sourceTree = "<group>"; };
 		3D3CD5342537785800076307 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		3D3CD53725377B8D00076307 /* GuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessView.swift; sourceTree = "<group>"; };
+		3D429493254D92E4008EDE5A /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		3D445565252BA96000C08456 /* String+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EXT.swift"; sourceTree = "<group>"; };
 		3D65CF14253F5FF70004F4FB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3D927648252907A7000D8998 /* DogBreeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreeds.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				3D445565252BA96000C08456 /* String+EXT.swift */,
 				3D039585253391DB007B1A25 /* FileManager+EXT.swift */,
 				3DB4BA632540BBE500018B98 /* PinchZoomView.swift */,
+				3D429493254D92E4008EDE5A /* Haptics.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			files = (
 				3DB4BA642540BBE500018B98 /* PinchZoomView.swift in Sources */,
 				3D65CF15253F5FF70004F4FB /* SettingsView.swift in Sources */,
+				3D429494254D92E4008EDE5A /* Haptics.swift in Sources */,
 				3DB54028253E0B520005210D /* MoreExamplesView.swift in Sources */,
 				3D3CD5352537785800076307 /* ImageView.swift in Sources */,
 				3DBC83B32527AE83006E3E25 /* ViewModel.swift in Sources */,

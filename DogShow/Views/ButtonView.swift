@@ -34,10 +34,12 @@ struct ButtonView: View {
                             viewModel.questionsAndAnswers.append(QuestionAndAnswer(presentedImageUrl: viewModel.imageURL!, guessedBreed: dog, correctBreed: viewModel.displayedBreed!))
                             if dog.displayName == viewModel.displayedBreed?.displayName {
                                 answerWasCorrect = true
+                                Haptics.simpleSuccess()
                                 viewModel.currentScore += 1
                                 viewModel.dogsShown += 1
                             } else {
                                 answerWasCorrect = false
+                                Haptics.error()
                                 viewModel.dogsShown += 1
                             }
                             
@@ -50,7 +52,6 @@ struct ButtonView: View {
                         Text("\(dog.displayName)")
                             
                             .foregroundColor(.white)
-//                            .frame(width: 150, height: 50)
                             .frame(minWidth: 150, maxWidth: 200, minHeight: 50, maxHeight: 60)
                             .background(Color.blue)
                             .cornerRadius(16)
